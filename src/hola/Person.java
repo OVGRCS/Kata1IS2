@@ -4,7 +4,9 @@
  */
 package hola;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -13,9 +15,9 @@ import java.util.Date;
 public class Person {
     private final String name;
     private final String surname;
-    private final Date date;
+    private final Calendar date;
     private static final long MILLISECONDS_PER_YEAR = (long) (1000*60*60*24*365.25);
-    public Person(String name, String surname, Date date) {
+    public Person(String name, String surname, Calendar date) {
         this.name = name;
         this.surname = surname;
         this.date = date;
@@ -29,15 +31,15 @@ public class Person {
         return surname;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
     public String getFullName(){
         return name + " " + surname;
     }
     public int getAge(){
-        Date today = new Date();
-        return (int) miMetodo(today.getTime()-date.getTime());
+        Calendar today = GregorianCalendar.getInstance();
+        return (int) miMetodo(today.getTimeInMillis()-date.getTimeInMillis());
     }
     private long miMetodo(long millis){
         return millis/MILLISECONDS_PER_YEAR;
